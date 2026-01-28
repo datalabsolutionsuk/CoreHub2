@@ -2,10 +2,56 @@
   "version": 3,
   "targets": {
     "net9.0": {
+      "AutoMapper/13.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Options": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "FluentValidation/11.11.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/FluentValidation.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/FluentValidation.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "FluentValidation.DependencyInjectionExtensions/11.11.0": {
+        "type": "package",
+        "dependencies": {
+          "FluentValidation": "11.11.0",
+          "Microsoft.Extensions.Dependencyinjection.Abstractions": "2.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Humanizer.dll": {
+          "lib/net6.0/_._": {
             "related": ".xml"
           }
         },
@@ -15,10 +61,40 @@
           }
         }
       },
+      "MediatR/12.4.1": {
+        "type": "package",
+        "dependencies": {
+          "MediatR.Contracts": "[2.0.1, 3.0.0)",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
+        },
+        "compile": {
+          "lib/net6.0/MediatR.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/MediatR.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "MediatR.Contracts/2.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/MediatR.Contracts.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/MediatR.Contracts.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/7.0.0": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
+          "lib/netstandard2.1/_._": {
             "related": ".xml"
           }
         },
@@ -31,7 +107,7 @@
       "Microsoft.Build.Framework/17.8.3": {
         "type": "package",
         "compile": {
-          "ref/net8.0/Microsoft.Build.Framework.dll": {
+          "ref/net8.0/_._": {
             "related": ".xml"
           }
         },
@@ -44,7 +120,7 @@
       "Microsoft.Build.Locator/1.7.8": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Microsoft.Build.Locator.dll": {}
+          "lib/net6.0/_._": {}
         },
         "runtime": {
           "lib/net6.0/Microsoft.Build.Locator.dll": {}
@@ -69,7 +145,7 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
         "compile": {
-          "lib/net7.0/Microsoft.CodeAnalysis.dll": {
+          "lib/net7.0/_._": {
             "related": ".pdb;.xml"
           }
         },
@@ -126,7 +202,7 @@
           "Microsoft.CodeAnalysis.Common": "[4.8.0]"
         },
         "compile": {
-          "lib/net7.0/Microsoft.CodeAnalysis.CSharp.dll": {
+          "lib/net7.0/_._": {
             "related": ".pdb;.xml"
           }
         },
@@ -186,7 +262,7 @@
           "Microsoft.CodeAnalysis.Workspaces.Common": "[4.8.0]"
         },
         "compile": {
-          "lib/net7.0/Microsoft.CodeAnalysis.CSharp.Workspaces.dll": {
+          "lib/net7.0/_._": {
             "related": ".pdb;.xml"
           }
         },
@@ -248,7 +324,7 @@
           "System.Threading.Channels": "7.0.0"
         },
         "compile": {
-          "lib/net7.0/Microsoft.CodeAnalysis.Workspaces.dll": {
+          "lib/net7.0/_._": {
             "related": ".pdb;.xml"
           }
         },
@@ -308,11 +384,8 @@
           "System.Text.Json": "7.0.3"
         },
         "compile": {
-          "lib/net7.0/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll": {
+          "lib/net7.0/_._": {
             "related": ".pdb;.runtimeconfig.json;.xml"
-          },
-          "lib/net7.0/Microsoft.CodeAnalysis.Workspaces.MSBuild.dll": {
-            "related": ".BuildHost.pdb;.BuildHost.runtimeconfig.json;.BuildHost.xml;.pdb;.xml"
           }
         },
         "runtime": {
@@ -421,7 +494,7 @@
           "System.Text.Json": "9.0.0"
         },
         "compile": {
-          "lib/net8.0/Microsoft.EntityFrameworkCore.Design.dll": {
+          "lib/net8.0/_._": {
             "related": ".xml"
           }
         },
@@ -552,7 +625,7 @@
       "Microsoft.Extensions.DependencyModel/9.0.0": {
         "type": "package",
         "compile": {
-          "lib/net9.0/Microsoft.Extensions.DependencyModel.dll": {
+          "lib/net9.0/_._": {
             "related": ".xml"
           }
         },
@@ -647,7 +720,7 @@
           "System.CodeDom": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/Mono.TextTemplating.dll": {}
+          "lib/net6.0/_._": {}
         },
         "runtime": {
           "lib/net6.0/Mono.TextTemplating.dll": {}
@@ -693,7 +766,7 @@
       "System.CodeDom/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/System.CodeDom.dll": {
+          "lib/net6.0/_._": {
             "related": ".xml"
           }
         },
@@ -709,7 +782,7 @@
       "System.Collections.Immutable/7.0.0": {
         "type": "package",
         "compile": {
-          "lib/net7.0/System.Collections.Immutable.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
@@ -744,7 +817,7 @@
       "System.Composition.AttributedModel/7.0.0": {
         "type": "package",
         "compile": {
-          "lib/net7.0/System.Composition.AttributedModel.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
@@ -763,7 +836,7 @@
           "System.Composition.AttributedModel": "7.0.0"
         },
         "compile": {
-          "lib/net7.0/System.Composition.Convention.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
@@ -782,7 +855,7 @@
           "System.Composition.Runtime": "7.0.0"
         },
         "compile": {
-          "lib/net7.0/System.Composition.Hosting.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
@@ -798,7 +871,7 @@
       "System.Composition.Runtime/7.0.0": {
         "type": "package",
         "compile": {
-          "lib/net7.0/System.Composition.Runtime.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
@@ -819,7 +892,7 @@
           "System.Composition.Runtime": "7.0.0"
         },
         "compile": {
-          "lib/net7.0/System.Composition.TypedParts.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
@@ -835,7 +908,7 @@
       "System.IO.Pipelines/7.0.0": {
         "type": "package",
         "compile": {
-          "lib/net7.0/System.IO.Pipelines.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
@@ -854,7 +927,7 @@
           "System.Collections.Immutable": "7.0.0"
         },
         "compile": {
-          "lib/net7.0/System.Reflection.Metadata.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
@@ -870,7 +943,7 @@
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
+          "lib/net6.0/_._": {
             "related": ".xml"
           }
         },
@@ -886,7 +959,7 @@
       "System.Text.Json/9.0.0": {
         "type": "package",
         "compile": {
-          "lib/net9.0/System.Text.Json.dll": {
+          "lib/net9.0/_._": {
             "related": ".xml"
           }
         },
@@ -902,7 +975,7 @@
       "System.Threading.Channels/7.0.0": {
         "type": "package",
         "compile": {
-          "lib/net7.0/System.Threading.Channels.dll": {
+          "lib/net7.0/_._": {
             "related": ".xml"
           }
         },
@@ -919,7 +992,12 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
-          "CoreHub.Domain": "1.0.0"
+          "AutoMapper": "13.0.1",
+          "CoreHub.Domain": "1.0.0",
+          "FluentValidation": "11.11.0",
+          "FluentValidation.DependencyInjectionExtensions": "11.11.0",
+          "MediatR": "12.4.1",
+          "Microsoft.EntityFrameworkCore": "9.0.0"
         },
         "compile": {
           "bin/placeholder/CoreHub.Application.dll": {}
@@ -941,6 +1019,63 @@
     }
   },
   "libraries": {
+    "AutoMapper/13.0.1": {
+      "sha512": "/Fx1SbJ16qS7dU4i604Sle+U9VLX+WSNVJggk6MupKVkYvvBm4XqYaeFuf67diHefHKHs50uQIS2YEDFhPCakQ==",
+      "type": "package",
+      "path": "automapper/13.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "automapper.13.0.1.nupkg.sha512",
+        "automapper.nuspec",
+        "icon.png",
+        "lib/net6.0/AutoMapper.dll",
+        "lib/net6.0/AutoMapper.xml"
+      ]
+    },
+    "FluentValidation/11.11.0": {
+      "sha512": "cyIVdQBwSipxWG8MA3Rqox7iNbUNUTK5bfJi9tIdm4CAfH71Oo5ABLP4/QyrUwuakqpUEPGtE43BDddvEehuYw==",
+      "type": "package",
+      "path": "fluentvalidation/11.11.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "fluent-validation-icon.png",
+        "fluentvalidation.11.11.0.nupkg.sha512",
+        "fluentvalidation.nuspec",
+        "lib/net5.0/FluentValidation.dll",
+        "lib/net5.0/FluentValidation.xml",
+        "lib/net6.0/FluentValidation.dll",
+        "lib/net6.0/FluentValidation.xml",
+        "lib/net7.0/FluentValidation.dll",
+        "lib/net7.0/FluentValidation.xml",
+        "lib/net8.0/FluentValidation.dll",
+        "lib/net8.0/FluentValidation.xml",
+        "lib/netstandard2.0/FluentValidation.dll",
+        "lib/netstandard2.0/FluentValidation.xml",
+        "lib/netstandard2.1/FluentValidation.dll",
+        "lib/netstandard2.1/FluentValidation.xml"
+      ]
+    },
+    "FluentValidation.DependencyInjectionExtensions/11.11.0": {
+      "sha512": "viTKWaMbL3yJYgGI0DiCeavNbE9UPMWFVK2XS9nYXGbm3NDMd0/L5ER4wBzmTtW3BYh3SrlSXm9RACiKZ6stlA==",
+      "type": "package",
+      "path": "fluentvalidation.dependencyinjectionextensions/11.11.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "fluent-validation-icon.png",
+        "fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
+        "fluentvalidation.dependencyinjectionextensions.nuspec",
+        "lib/netstandard2.0/FluentValidation.DependencyInjectionExtensions.dll",
+        "lib/netstandard2.0/FluentValidation.DependencyInjectionExtensions.xml",
+        "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll",
+        "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.xml"
+      ]
+    },
     "Humanizer.Core/2.14.1": {
       "sha512": "lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "type": "package",
@@ -957,6 +1092,37 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "MediatR/12.4.1": {
+      "sha512": "0tLxCgEC5+r1OCuumR3sWyiVa+BMv3AgiU4+pz8xqTc+2q1WbUEXFOr7Orm96oZ9r9FsldgUtWvB2o7b9jDOaw==",
+      "type": "package",
+      "path": "mediatr/12.4.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "gradient_128x128.png",
+        "lib/net6.0/MediatR.dll",
+        "lib/net6.0/MediatR.xml",
+        "lib/netstandard2.0/MediatR.dll",
+        "lib/netstandard2.0/MediatR.xml",
+        "mediatr.12.4.1.nupkg.sha512",
+        "mediatr.nuspec"
+      ]
+    },
+    "MediatR.Contracts/2.0.1": {
+      "sha512": "FYv95bNT4UwcNA+G/J1oX5OpRiSUxteXaUt2BJbRSdRNiIUNbggJF69wy6mnk2wYToaanpdXZdCwVylt96MpwQ==",
+      "type": "package",
+      "path": "mediatr.contracts/2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "gradient_128x128.png",
+        "lib/netstandard2.0/MediatR.Contracts.dll",
+        "lib/netstandard2.0/MediatR.Contracts.xml",
+        "mediatr.contracts.2.0.1.nupkg.sha512",
+        "mediatr.contracts.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/7.0.0": {

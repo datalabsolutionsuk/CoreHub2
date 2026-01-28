@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CoreHub.API</name>
+    </assembly>
+    <members>
+        <member name="T:CoreHub.API.Controllers.PatientsController">
+            <summary>
+            Patients API controller for managing patient records
+            </summary>
+        </member>
+        <member name="M:CoreHub.API.Controllers.PatientsController.GetPatients(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Gets a paginated list of patients with optional search and filtering
+            </summary>
+            <param name="pageNumber">Page number (default: 1)</param>
+            <param name="pageSize">Page size (default: 10, max: 100)</param>
+            <param name="searchTerm">Search term for name, email, or phone</param>
+            <param name="status">Filter by status (Active, Inactive, Archived)</param>
+            <returns>Paginated list of patients</returns>
+        </member>
+        <member name="M:CoreHub.API.Controllers.PatientsController.GetPatient(System.Guid)">
+            <summary>
+            Gets a specific patient by ID
+            </summary>
+            <param name="id">Patient ID</param>
+            <returns>Patient details</returns>
+        </member>
+        <member name="M:CoreHub.API.Controllers.PatientsController.CreatePatient(CoreHub.Application.DTOs.CreatePatientDto)">
+            <summary>
+            Creates a new patient
+            </summary>
+            <param name="createPatientDto">Patient data</param>
+            <returns>Created patient ID</returns>
+        </member>
+        <member name="M:CoreHub.API.Controllers.PatientsController.UpdatePatient(System.Guid,CoreHub.Application.DTOs.UpdatePatientDto)">
+            <summary>
+            Updates an existing patient
+            </summary>
+            <param name="id">Patient ID</param>
+            <param name="updatePatientDto">Updated patient data</param>
+            <returns>No content on success</returns>
+        </member>
+        <member name="M:CoreHub.API.Controllers.PatientsController.DeletePatient(System.Guid)">
+            <summary>
+            Deletes a patient
+            </summary>
+            <param name="id">Patient ID</param>
+            <returns>No content on success</returns>
+        </member>
+        <member name="T:CoreHub.API.Middleware.GlobalExceptionHandlerMiddleware">
+            <summary>
+            Global exception handling middleware for consistent error responses
+            </summary>
+        </member>
+        <member name="T:CoreHub.API.Middleware.ApiErrorResponse">
+            <summary>
+            Standardized API error response
+            </summary>
+        </member>
+        <member name="P:CoreHub.API.Middleware.ApiErrorResponse.StatusCode">
+            <summary>
+            HTTP status code
+            </summary>
+        </member>
+        <member name="P:CoreHub.API.Middleware.ApiErrorResponse.Title">
+            <summary>
+            Error title
+            </summary>
+        </member>
+        <member name="P:CoreHub.API.Middleware.ApiErrorResponse.Message">
+            <summary>
+            Error message with details
+            </summary>
+        </member>
+        <member name="P:CoreHub.API.Middleware.ApiErrorResponse.CorrelationId">
+            <summary>
+            Correlation ID for tracking
+            </summary>
+        </member>
+        <member name="P:CoreHub.API.Middleware.ApiErrorResponse.Timestamp">
+            <summary>
+            Timestamp when the error occurred
+            </summary>
+        </member>
+        <member name="P:CoreHub.API.Middleware.ApiErrorResponse.ValidationErrors">
+            <summary>
+            Validation errors (if applicable)
+            </summary>
+        </member>
+        <member name="T:CoreHub.API.Middleware.ValidationError">
+            <summary>
+            Validation error detail
+            </summary>
+        </member>
+        <member name="P:CoreHub.API.Middleware.ValidationError.Field">
+            <summary>
+            Field that failed validation
+            </summary>
+        </member>
+        <member name="P:CoreHub.API.Middleware.ValidationError.Message">
+            <summary>
+            Validation error message
+            </summary>
+        </member>
+        <member name="T:CoreHub.API.Middleware.GlobalExceptionHandlerMiddlewareExtensions">
+            <summary>
+            Extension methods for registering the global exception handler
+            </summary>
+        </member>
+        <member name="M:CoreHub.API.Middleware.GlobalExceptionHandlerMiddlewareExtensions.UseGlobalExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Adds global exception handling middleware to the pipeline
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,12 @@
+/home/ubuntu/clawd/CoreHub2/src/Core/CoreHub.Domain/bin/Debug/net9.0/CoreHub.Domain.deps.json
+/home/ubuntu/clawd/CoreHub2/src/Core/CoreHub.Domain/bin/Debug/net9.0/CoreHub.Domain.dll
+/home/ubuntu/clawd/CoreHub2/src/Core/CoreHub.Domain/bin/Debug/net9.0/CoreHub.Domain.pdb
+/home/ubuntu/clawd/CoreHub2/src/Core/CoreHub.Domain/obj/Debug/net9.0/CoreHub.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/ubuntu/clawd/CoreHub2/src/Core/CoreHub.Domain/obj/Debug/net9.0/CoreHub.Domain.AssemblyInfoInputs.cache
+/home/ubuntu/clawd/CoreHub2/src/Core/CoreHub.Domain/obj/Debug/net9.0/CoreHub.Domain.AssemblyInfo.cs
+/home/ubuntu/clawd/CoreHub2/src/Core/CoreHub.Domain/obj/Debug/net9.0/CoreHub.Domain.csproj.CoreCompileInputs.cache
+/home/ubuntu/clawd/CoreHub2/src/Core/CoreHub.Domain/obj/Debug/net9.0/CoreHub.Domain.sourcelink.json
+/home/ubuntu/clawd/CoreHub2/src/Core/CoreHub.Domain/obj/Debug/net9.0/CoreHub.Domain.dll
+/home/ubuntu/clawd/CoreHub2/src/Core/CoreHub.Domain/obj/Debug/net9.0/refint/CoreHub.Domain.dll
+/home/ubuntu/clawd/CoreHub2/src/Core/CoreHub.Domain/obj/Debug/net9.0/CoreHub.Domain.pdb
+/home/ubuntu/clawd/CoreHub2/src/Core/CoreHub.Domain/obj/Debug/net9.0/ref/CoreHub.Domain.dll

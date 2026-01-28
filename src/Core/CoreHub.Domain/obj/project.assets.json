@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/ubuntu/clawd/CoreHub/src/Core/CoreHub.Domain/CoreHub.Domain.csproj",
+      "projectUniqueName": "/home/ubuntu/clawd/CoreHub2/src/Core/CoreHub.Domain/CoreHub.Domain.csproj",
       "projectName": "CoreHub.Domain",
-      "projectPath": "/home/ubuntu/clawd/CoreHub/src/Core/CoreHub.Domain/CoreHub.Domain.csproj",
+      "projectPath": "/home/ubuntu/clawd/CoreHub2/src/Core/CoreHub.Domain/CoreHub.Domain.csproj",
       "packagesPath": "/home/ubuntu/.nuget/packages/",
-      "outputPath": "/home/ubuntu/clawd/CoreHub/src/Core/CoreHub.Domain/obj/",
+      "outputPath": "/home/ubuntu/clawd/CoreHub2/src/Core/CoreHub.Domain/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/ubuntu/.nuget/NuGet/NuGet.Config"
