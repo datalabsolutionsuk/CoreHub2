@@ -187,8 +187,8 @@ src/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/datachampionuk/CoreHub.git
-   cd CoreHub
+   git clone https://github.com/datalabsolutionsuk/CoreHub2.git
+   cd CoreHub2
    ```
 
 2. **Restore dependencies**
