@@ -135,3 +135,12 @@
 /home/ubuntu/clawd/CoreHub2/src/Presentation/CoreHub.API/obj/Debug/net9.0/CoreHub.API.pdb
 /home/ubuntu/clawd/CoreHub2/src/Presentation/CoreHub.API/obj/Debug/net9.0/CoreHub.API.genruntimeconfig.cache
 /home/ubuntu/clawd/CoreHub2/src/Presentation/CoreHub.API/obj/Debug/net9.0/ref/CoreHub.API.dll
+/home/ubuntu/clawd/CoreHub2/src/Presentation/CoreHub.API/bin/Debug/net9.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/home/ubuntu/clawd/CoreHub2/src/Presentation/CoreHub.API/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/ubuntu/clawd/CoreHub2/src/Presentation/CoreHub.API/bin/Debug/net9.0/Microsoft.IdentityModel.Abstractions.dll
+/home/ubuntu/clawd/CoreHub2/src/Presentation/CoreHub.API/bin/Debug/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/ubuntu/clawd/CoreHub2/src/Presentation/CoreHub.API/bin/Debug/net9.0/Microsoft.IdentityModel.Logging.dll
+/home/ubuntu/clawd/CoreHub2/src/Presentation/CoreHub.API/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.dll
+/home/ubuntu/clawd/CoreHub2/src/Presentation/CoreHub.API/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/ubuntu/clawd/CoreHub2/src/Presentation/CoreHub.API/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
+/home/ubuntu/clawd/CoreHub2/src/Presentation/CoreHub.API/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll

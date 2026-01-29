@@ -3,6 +3,7 @@ using CoreHub.Application.DTOs;
 using CoreHub.Application.Features.Patients.Commands;
 using CoreHub.Application.Features.Patients.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreHub.API.Controllers;
@@ -13,6 +14,7 @@ namespace CoreHub.API.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
+[Authorize]
 public class PatientsController : ControllerBase
 {
     private readonly IMediator _mediator;

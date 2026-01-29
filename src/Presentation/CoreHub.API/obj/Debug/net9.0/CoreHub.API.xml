@@ -4,6 +4,46 @@
         <name>CoreHub.API</name>
     </assembly>
     <members>
+        <member name="T:CoreHub.API.Controllers.AuthController">
+            <summary>
+            Authentication controller for user registration, login, and token management
+            </summary>
+        </member>
+        <member name="M:CoreHub.API.Controllers.AuthController.Register(CoreHub.Application.DTOs.RegisterDto)">
+            <summary>
+            Register a new user
+            </summary>
+            <param name="registerDto">Registration data</param>
+            <returns>Token response with JWT and user info</returns>
+            <response code="200">User registered successfully</response>
+            <response code="400">Validation error or registration failed</response>
+        </member>
+        <member name="M:CoreHub.API.Controllers.AuthController.Login(CoreHub.Application.DTOs.LoginDto)">
+            <summary>
+            Login with email and password
+            </summary>
+            <param name="loginDto">Login credentials</param>
+            <returns>Token response with JWT and user info</returns>
+            <response code="200">Login successful</response>
+            <response code="401">Invalid credentials or account locked</response>
+        </member>
+        <member name="M:CoreHub.API.Controllers.AuthController.RefreshToken(CoreHub.Application.DTOs.RefreshTokenDto)">
+            <summary>
+            Refresh an expired access token
+            </summary>
+            <param name="refreshTokenDto">Expired access token and refresh token</param>
+            <returns>New token response</returns>
+            <response code="200">Token refreshed successfully</response>
+            <response code="401">Invalid or expired refresh token</response>
+        </member>
+        <member name="M:CoreHub.API.Controllers.AuthController.GetCurrentUser">
+            <summary>
+            Get current authenticated user information
+            </summary>
+            <returns>Current user info</returns>
+            <response code="200">User info retrieved successfully</response>
+            <response code="401">Not authenticated</response>
+        </member>
         <member name="T:CoreHub.API.Controllers.PatientsController">
             <summary>
             Patients API controller for managing patient records
