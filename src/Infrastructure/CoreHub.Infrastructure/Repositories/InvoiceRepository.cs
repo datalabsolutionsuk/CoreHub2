@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CoreHub.Application.Interfaces;
 using CoreHub.Domain.Entities;
 using CoreHub.Infrastructure.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoreHub.Infrastructure.Repositories;
@@ -14,13 +15,15 @@ namespace CoreHub.Infrastructure.Repositories;
 /// </summary>
 public class InvoiceRepository : Repository<Invoice>, IInvoiceRepository
 {
-    public InvoiceRepository(ApplicationDbContext context) : base(context)
+    public InvoiceRepository(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor) 
+        : base(context, httpContextAccessor)
     {
     }
 
     public async Task<Invoice?> GetByInvoiceNumberAsync(string invoiceNumber)
     {
-        return await _dbSet
+        var query = ApplyOrganizationFilter(_dbSet);
+        return await query
             .Include(i => i.Patient)
             .Include(i => i.Payments)
             .FirstOrDefaultAsync(i => i.InvoiceNumber == invoiceNumber);
@@ -28,7 +31,8 @@ public class InvoiceRepository : Repository<Invoice>, IInvoiceRepository
 
     public async Task<IEnumerable<Invoice>> GetByPatientAsync(Guid patientId)
     {
-        return await _dbSet
+        var query = ApplyOrganizationFilter(_dbSet);
+        return await query
             .Where(i => i.PatientId == patientId)
             .Include(i => i.Payments)
             .OrderByDescending(i => i.InvoiceDate)
@@ -37,7 +41,8 @@ public class InvoiceRepository : Repository<Invoice>, IInvoiceRepository
 
     public async Task<IEnumerable<Invoice>> GetByStatusAsync(string status)
     {
-        return await _dbSet
+        var query = ApplyOrganizationFilter(_dbSet);
+        return await query
             .Where(i => i.Status == status)
             .Include(i => i.Patient)
             .OrderByDescending(i => i.InvoiceDate)
@@ -46,7 +51,8 @@ public class InvoiceRepository : Repository<Invoice>, IInvoiceRepository
 
     public async Task<Invoice?> GetWithPaymentsAsync(Guid id)
     {
-        return await _dbSet
+        var query = ApplyOrganizationFilter(_dbSet);
+        return await query
             .Include(i => i.Patient)
             .Include(i => i.Payments)
             .Include(i => i.Organization)
@@ -56,7 +62,8 @@ public class InvoiceRepository : Repository<Invoice>, IInvoiceRepository
     public async Task<IEnumerable<Invoice>> GetOverdueAsync()
     {
         var now = DateTime.UtcNow;
-        return await _dbSet
+        var query = ApplyOrganizationFilter(_dbSet);
+        return await query
             .Where(i => i.DueDate < now && 
                        i.Status != "Paid" && 
                        i.AmountDue > 0)
@@ -67,7 +74,8 @@ public class InvoiceRepository : Repository<Invoice>, IInvoiceRepository
 
     public async Task<IEnumerable<Invoice>> GetByDateRangeAsync(DateTime startDate, DateTime endDate)
     {
-        return await _dbSet
+        var query = ApplyOrganizationFilter(_dbSet);
+        return await query
             .Where(i => i.InvoiceDate >= startDate && i.InvoiceDate <= endDate)
             .Include(i => i.Patient)
             .OrderByDescending(i => i.InvoiceDate)
@@ -79,7 +87,8 @@ public class InvoiceRepository : Repository<Invoice>, IInvoiceRepository
         var currentYear = DateTime.UtcNow.Year;
         var prefix = $"INV-{currentYear}-";
 
-        var lastInvoice = await _dbSet
+        var query = ApplyOrganizationFilter(_dbSet);
+        var lastInvoice = await query
             .Where(i => i.InvoiceNumber.StartsWith(prefix))
             .OrderByDescending(i => i.InvoiceNumber)
             .FirstOrDefaultAsync();

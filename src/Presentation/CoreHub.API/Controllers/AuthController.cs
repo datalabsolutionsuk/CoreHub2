@@ -45,6 +45,7 @@ public class AuthController : ControllerBase
     /// <response code="200">User registered successfully</response>
     /// <response code="400">Validation error or registration failed</response>
     [HttpPost("register")]
+    [AllowAnonymous]
     [ProducesResponseType(typeof(TokenResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<TokenResponseDto>> Register([FromBody] RegisterDto registerDto)
@@ -128,6 +129,7 @@ public class AuthController : ControllerBase
     /// <response code="200">Login successful</response>
     /// <response code="401">Invalid credentials or account locked</response>
     [HttpPost("login")]
+    [AllowAnonymous]
     [ProducesResponseType(typeof(TokenResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<TokenResponseDto>> Login([FromBody] LoginDto loginDto)
@@ -203,6 +205,7 @@ public class AuthController : ControllerBase
     /// <response code="200">Token refreshed successfully</response>
     /// <response code="401">Invalid or expired refresh token</response>
     [HttpPost("refresh-token")]
+    [AllowAnonymous]
     [ProducesResponseType(typeof(TokenResponseDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<TokenResponseDto>> RefreshToken([FromBody] RefreshTokenDto refreshTokenDto)

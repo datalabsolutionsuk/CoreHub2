@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CoreHub.Application.Interfaces;
 using CoreHub.Domain.Entities;
 using CoreHub.Infrastructure.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoreHub.Infrastructure.Repositories;
@@ -14,20 +15,23 @@ namespace CoreHub.Infrastructure.Repositories;
 /// </summary>
 public class PatientRepository : Repository<Patient>, IPatientRepository
 {
-    public PatientRepository(ApplicationDbContext context) : base(context)
+    public PatientRepository(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor) 
+        : base(context, httpContextAccessor)
     {
     }
 
     public async Task<Patient?> GetByEmailAsync(string email)
     {
-        return await _dbSet
+        var query = ApplyOrganizationFilter(_dbSet);
+        return await query
             .FirstOrDefaultAsync(p => p.Email.ToLower() == email.ToLower());
     }
 
     public async Task<IEnumerable<Patient>> SearchByNameAsync(string searchTerm)
     {
         var term = searchTerm.ToLower();
-        return await _dbSet
+        var query = ApplyOrganizationFilter(_dbSet);
+        return await query
             .Where(p => p.FirstName.ToLower().Contains(term) ||
                        p.LastName.ToLower().Contains(term) ||
                        (p.MiddleName != null && p.MiddleName.ToLower().Contains(term)))
@@ -38,7 +42,8 @@ public class PatientRepository : Repository<Patient>, IPatientRepository
 
     public async Task<IEnumerable<Patient>> GetByStatusAsync(string status)
     {
-        return await _dbSet
+        var query = ApplyOrganizationFilter(_dbSet);
+        return await query
             .Where(p => p.Status == status)
             .OrderBy(p => p.LastName)
             .ThenBy(p => p.FirstName)
@@ -47,7 +52,8 @@ public class PatientRepository : Repository<Patient>, IPatientRepository
 
     public async Task<Patient?> GetWithAppointmentsAsync(Guid id)
     {
-        return await _dbSet
+        var query = ApplyOrganizationFilter(_dbSet);
+        return await query
             .Include(p => p.Appointments)
             .Include(p => p.PrimaryPractitioner)
             .FirstOrDefaultAsync(p => p.Id == id);
@@ -59,7 +65,7 @@ public class PatientRepository : Repository<Patient>, IPatientRepository
         string? searchTerm = null, 
         string? status = null)
     {
-        var query = _dbSet.AsQueryable();
+        var query = ApplyOrganizationFilter(_dbSet.AsQueryable());
 
         // Apply filters
         if (!string.IsNullOrWhiteSpace(searchTerm))

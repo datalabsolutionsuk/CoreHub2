@@ -78,7 +78,28 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-builder.Services.AddAuthorization();
+// Configure Authorization Policies
+builder.Services.AddAuthorization(options =>
+{
+    // Require authenticated user with OrganizationId claim
+    options.AddPolicy("RequireOrganizationAccess", policy =>
+        policy.Requirements.Add(new CoreHub.Application.Authorization.OrganizationAccessRequirement()));
+
+    // Require Admin role
+    options.AddPolicy("RequireAdminRole", policy =>
+        policy.RequireRole("Admin"));
+
+    // Require Practitioner or Admin role
+    options.AddPolicy("RequirePractitionerRole", policy =>
+        policy.RequireRole("Practitioner", "Admin"));
+});
+
+// Register IHttpContextAccessor for organization filtering
+builder.Services.AddHttpContextAccessor();
+
+// Register Authorization Handlers
+builder.Services.AddScoped<Microsoft.AspNetCore.Authorization.IAuthorizationHandler, 
+    CoreHub.Application.Authorization.OrganizationAccessHandler>();
 
 // Register Token Service
 builder.Services.AddScoped<ITokenService, JwtTokenService>();

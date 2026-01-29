@@ -10,19 +10,13 @@ using Xunit;
 
 namespace CoreHub.Tests.Infrastructure.Repositories;
 
-public class PatientRepositoryTests : IDisposable
+public class PatientRepositoryTests : TestBase
 {
-    private readonly ApplicationDbContext _context;
     private readonly PatientRepository _repository;
 
     public PatientRepositoryTests()
     {
-        var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
-            .Options;
-
-        _context = new ApplicationDbContext(options);
-        _repository = new PatientRepository(_context);
+        _repository = new PatientRepository(Context, MockHttpContextAccessor.Object);
     }
 
     [Fact]
@@ -43,7 +37,7 @@ public class PatientRepositoryTests : IDisposable
         await _repository.SaveChangesAsync();
 
         // Assert
-        var savedPatient = await _context.Patients.FindAsync(patient.Id);
+        var savedPatient = await Context.Patients.FindAsync(patient.Id);
         savedPatient.Should().NotBeNull();
         savedPatient!.FirstName.Should().Be("Jane");
         savedPatient.LastName.Should().Be("Smith");
@@ -66,8 +60,8 @@ public class PatientRepositoryTests : IDisposable
             UpdatedAt = DateTime.UtcNow
         };
 
-        _context.Patients.Add(patient);
-        await _context.SaveChangesAsync();
+        Context.Patients.Add(patient);
+        await Context.SaveChangesAsync();
 
         // Act
         var result = await _repository.GetByEmailAsync("test@example.com");
@@ -125,8 +119,8 @@ public class PatientRepositoryTests : IDisposable
             }
         };
 
-        _context.Patients.AddRange(patients);
-        await _context.SaveChangesAsync();
+        Context.Patients.AddRange(patients);
+        await Context.SaveChangesAsync();
 
         // Act
         var results = await _repository.SearchByNameAsync("Johnson");
@@ -152,8 +146,8 @@ public class PatientRepositoryTests : IDisposable
             UpdatedAt = DateTime.UtcNow
         }).ToArray();
 
-        _context.Patients.AddRange(patients);
-        await _context.SaveChangesAsync();
+        Context.Patients.AddRange(patients);
+        await Context.SaveChangesAsync();
 
         // Act
         var (items, totalCount) = await _repository.GetPagedAsync(2, 10);
@@ -178,8 +172,8 @@ public class PatientRepositoryTests : IDisposable
             UpdatedAt = DateTime.UtcNow
         };
 
-        _context.Patients.Add(patient);
-        await _context.SaveChangesAsync();
+        Context.Patients.Add(patient);
+        await Context.SaveChangesAsync();
 
         // Act
         patient.FirstName = "Updated";
@@ -188,7 +182,7 @@ public class PatientRepositoryTests : IDisposable
         await _repository.SaveChangesAsync();
 
         // Assert
-        var updatedPatient = await _context.Patients.FindAsync(patient.Id);
+        var updatedPatient = await Context.Patients.FindAsync(patient.Id);
         updatedPatient!.FirstName.Should().Be("Updated");
         updatedPatient.Email.Should().Be("updated@example.com");
         updatedPatient.UpdatedAt.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(5));
@@ -209,20 +203,15 @@ public class PatientRepositoryTests : IDisposable
             UpdatedAt = DateTime.UtcNow
         };
 
-        _context.Patients.Add(patient);
-        await _context.SaveChangesAsync();
+        Context.Patients.Add(patient);
+        await Context.SaveChangesAsync();
 
         // Act
         await _repository.DeleteAsync(patient.Id);
         await _repository.SaveChangesAsync();
 
         // Assert
-        var deletedPatient = await _context.Patients.FindAsync(patient.Id);
+        var deletedPatient = await Context.Patients.FindAsync(patient.Id);
         deletedPatient.Should().BeNull();
-    }
-
-    public void Dispose()
-    {
-        _context.Dispose();
     }
 }

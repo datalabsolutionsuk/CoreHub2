@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CoreHub.Application.Interfaces;
 using CoreHub.Domain.Entities;
 using CoreHub.Infrastructure.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoreHub.Infrastructure.Repositories;
@@ -14,13 +15,15 @@ namespace CoreHub.Infrastructure.Repositories;
 /// </summary>
 public class AppointmentRepository : Repository<Appointment>, IAppointmentRepository
 {
-    public AppointmentRepository(ApplicationDbContext context) : base(context)
+    public AppointmentRepository(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor) 
+        : base(context, httpContextAccessor)
     {
     }
 
     public async Task<IEnumerable<Appointment>> GetByPatientAsync(Guid patientId)
     {
-        return await _dbSet
+        var query = ApplyOrganizationFilter(_dbSet);
+        return await query
             .Where(a => a.PatientId == patientId)
             .Include(a => a.Practitioner)
             .Include(a => a.Location)
@@ -30,7 +33,8 @@ public class AppointmentRepository : Repository<Appointment>, IAppointmentReposi
 
     public async Task<IEnumerable<Appointment>> GetByPractitionerAsync(Guid practitionerId)
     {
-        return await _dbSet
+        var query = ApplyOrganizationFilter(_dbSet);
+        return await query
             .Where(a => a.PractitionerId == practitionerId)
             .Include(a => a.Patient)
             .Include(a => a.Location)
@@ -40,7 +44,8 @@ public class AppointmentRepository : Repository<Appointment>, IAppointmentReposi
 
     public async Task<IEnumerable<Appointment>> GetByDateRangeAsync(DateTime startDate, DateTime endDate)
     {
-        return await _dbSet
+        var query = ApplyOrganizationFilter(_dbSet);
+        return await query
             .Where(a => a.StartTime >= startDate && a.StartTime <= endDate)
             .Include(a => a.Patient)
             .Include(a => a.Practitioner)
@@ -51,7 +56,8 @@ public class AppointmentRepository : Repository<Appointment>, IAppointmentReposi
 
     public async Task<IEnumerable<Appointment>> GetByStatusAsync(string status)
     {
-        return await _dbSet
+        var query = ApplyOrganizationFilter(_dbSet);
+        return await query
             .Where(a => a.Status == status)
             .Include(a => a.Patient)
             .Include(a => a.Practitioner)
@@ -62,7 +68,8 @@ public class AppointmentRepository : Repository<Appointment>, IAppointmentReposi
     public async Task<IEnumerable<Appointment>> GetUpcomingByPatientAsync(Guid patientId)
     {
         var now = DateTime.UtcNow;
-        return await _dbSet
+        var query = ApplyOrganizationFilter(_dbSet);
+        return await query
             .Where(a => a.PatientId == patientId && a.StartTime > now)
             .Include(a => a.Practitioner)
             .Include(a => a.Location)
@@ -76,7 +83,7 @@ public class AppointmentRepository : Repository<Appointment>, IAppointmentReposi
         DateTime endTime, 
         Guid? excludeAppointmentId = null)
     {
-        var query = _dbSet
+        var query = ApplyOrganizationFilter(_dbSet)
             .Where(a => a.PractitionerId == practitionerId &&
                        a.Status != "Cancelled" &&
                        ((a.StartTime >= startTime && a.StartTime < endTime) ||

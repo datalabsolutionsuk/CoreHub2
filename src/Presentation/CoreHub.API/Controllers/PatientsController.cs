@@ -14,7 +14,7 @@ namespace CoreHub.API.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
-[Authorize]
+[Authorize(Policy = "RequireOrganizationAccess")]
 public class PatientsController : ControllerBase
 {
     private readonly IMediator _mediator;
