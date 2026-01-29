@@ -74,7 +74,26 @@ builder.Services.AddCors(options =>
     });
 });
 
+// Register DbInitializer
+builder.Services.AddScoped<DbInitializer>();
+
 var app = builder.Build();
+
+// Seed database
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var initializer = services.GetRequiredService<DbInitializer>();
+        await initializer.SeedAsync();
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while seeding the database");
+    }
+}
 
 // Add global exception handling middleware first
 app.UseGlobalExceptionHandler();

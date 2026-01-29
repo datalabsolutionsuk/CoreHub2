@@ -1,12 +1,14 @@
 using CoreHub.Domain.Entities;
+using CoreHub.Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoreHub.Infrastructure.Data;
 
 /// <summary>
-/// Main database context for CoreHub CRM
+/// Main database context for CoreHub CRM with Identity support
 /// </summary>
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -40,6 +42,23 @@ public class ApplicationDbContext : DbContext
         ConfigureLocation(modelBuilder);
         ConfigureDocument(modelBuilder);
         ConfigureNoteTemplate(modelBuilder);
+        ConfigureApplicationUser(modelBuilder);
+    }
+
+    private void ConfigureApplicationUser(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<ApplicationUser>(entity =>
+        {
+            entity.Property(e => e.FirstName).IsRequired().HasMaxLength(100);
+            entity.Property(e => e.LastName).IsRequired().HasMaxLength(100);
+            
+            entity.HasIndex(e => e.OrganizationId);
+            
+            entity.HasOne(u => u.Organization)
+                  .WithMany()
+                  .HasForeignKey(u => u.OrganizationId)
+                  .OnDelete(DeleteBehavior.Restrict);
+        });
     }
 
     private void ConfigurePatient(ModelBuilder modelBuilder)

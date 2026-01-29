@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CoreHub.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b810a0c88b54f90a8bb0348c0a249a5270d62c5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f10f88616b460db40a7536494a784929734a862")]
 [assembly: System.Reflection.AssemblyProductAttribute("CoreHub.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CoreHub.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
